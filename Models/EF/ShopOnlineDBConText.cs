@@ -55,10 +55,6 @@ namespace Models.EF
                 .Property(e => e.ID)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Menu>()
-                .Property(e => e.Status)
-                .IsFixedLength();
-
             modelBuilder.Entity<Product>()
                 .Property(e => e.Code)
                 .IsUnicode(false);
@@ -79,10 +75,6 @@ namespace Models.EF
                 .Property(e => e.MetaTitle)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Slide>()
-                .Property(e => e.Status)
-                .IsFixedLength();
-
             modelBuilder.Entity<SystemConfig>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
@@ -102,10 +94,6 @@ namespace Models.EF
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.Status)
-                .IsFixedLength();
         }
     }
 }

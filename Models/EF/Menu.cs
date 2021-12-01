@@ -21,9 +21,7 @@ namespace Models.EF
 
         [StringLength(50)]
         public string Target { get; set; }
-
-        [StringLength(10)]
-        public string Status { get; set; }
+        public bool? Status { get; set; }
 
         public int? TypeID { get; set; }
     }
