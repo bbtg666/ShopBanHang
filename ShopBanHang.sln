@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1738
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopBanHang", "ShopBanHang\ShopBanHang.csproj", "{BD08820A-BA16-4FE6-A021-5DE3B36D5461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{FE590244-4312-4E3B-AEA9-2E1AA2237652}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD08820A-BA16-4FE6-A021-5DE3B36D5461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD08820A-BA16-4FE6-A021-5DE3B36D5461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD08820A-BA16-4FE6-A021-5DE3B36D5461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD08820A-BA16-4FE6-A021-5DE3B36D5461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A73E5BE8-4196-4DAC-AF1B-6902E8BB01BB}
+	EndGlobalSection
+EndGlobal
