@@ -20,5 +20,22 @@ namespace ShopBanHang.Areas.Admin.Controllers
             }
             base.OnActionExecuting(filterContext);
         }
+        protected void SetAlert(string msg, string type)
+        {
+            TempData["AlertMsg"] = msg;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
     }
 }

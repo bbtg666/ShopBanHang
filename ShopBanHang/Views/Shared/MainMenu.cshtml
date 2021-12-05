@@ -1,0 +1,11 @@
+﻿@model List<Models.EF.Menu>
+<div class="span8">
+    <div class="account pull-right">
+        <ul class="user-menu">
+            @foreach (var item in Model)
+            {
+                <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
+            }
+        </ul>
+    </div>
+</div>

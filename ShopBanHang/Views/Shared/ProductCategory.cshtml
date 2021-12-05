@@ -1,0 +1,31 @@
+﻿@model List<Models.EF.Menu>
+@{
+    var listProductCategory = (List<Models.EF.ProductCategory>)ViewBag.subMenu;
+}
+<section class="navbar main-menu">
+    <div class="navbar-inner main-menu">
+        <a href="/" class="logo pull-left"><img src="/assets/client/themes/images/logo.png" class="site_logo" alt=""></a>
+        <nav id="menu" class="pull-right">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="@item.Link" target="@item.Target">@item.Text</a>
+                        <ul>
+                            @foreach (var productCategory in listProductCategory)
+                            {
+
+                                if (Array.IndexOf(productCategory.MenuIDs.Split(','), item.ID.ToString()) > -1)
+                                {
+                                    <li><a href="@(@item.Link + "/" +productCategory.MetaTitle)">@productCategory.Name</a></li>
+                                }
+
+                            }
+                        </ul>
+
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</section>

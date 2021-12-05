@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +11,18 @@ namespace ShopBanHang.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var listSlide = new SlideDao().ListSlide();
+            var dao = new ProductDao();
+            ViewBag.listNewProduct = dao.ListNewProduct(8);
+            ViewBag.listFeatureProduct = dao.ListFeatureProduct(8);
+            return View(listSlide);
         }
-
-        public ActionResult About()
+        [ChildActionOnly]
+        public ActionResult MainMenu()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var model = new MenuDao().ListByGroupID(1);
+            return PartialView(model);
         }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<Models.EF.User>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+    <script src="~/assets/admin/js/UserController.js"></script>
+}
+<div class="row">
+    @using (Html.BeginForm("Index", "User", FormMethod.Get, new { @class = "col-md-12" }))
+    {
+        <div class="col-md-12 justify-content-end d-flex">
+            <div class="col-md-4 ">
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search" aria-label="Search"
+                           aria-describedby="search-addon" name="searchString" value="@ViewBag.searchString" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center">Tài khoản</th>
+                        <th class="text-center">Tên</th>
+                        <th class="text-center">Số điện thoại</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr id="row_@user.ID">
+                            <td class="text-center">@user.UserName</td>
+                            <td class="text-center">@user.Name</td>
+                            <td class="text-center">@user.Phone</td>
+                            <td class="text-center">@user.Email</td>
+                            <td class="text-center"><a href="#" id="btnStatus" class="btn btn-active" data-id="@user.ID">@(user.Status ? "Kích hoạt" : "Khóa")</a></td>
+                            <td class="text-center">
+                                <a href="/Admin/User/Edit/@user.ID">Sửa</a>
+                                |
+                                @Ajax.ActionLink("Xóa", "Delete", new { @id = user.ID }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có chắc chắn muốn xóa người dùng này???",
+                               OnComplete = "$('#row_" + @user.ID + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.searchString }), new PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" }
+             })
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.page-item a').addClass("page-link");
+</script>

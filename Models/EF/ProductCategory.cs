@@ -43,5 +43,7 @@ namespace Models.EF
 
         [StringLength(250)]
         public string MetaDescriptions { get; set; }
+        [StringLength(50)]
+        public string MenuIDs { get; set; }
     }
 }
