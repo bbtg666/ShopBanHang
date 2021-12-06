@@ -1,5 +1,6 @@
 ﻿@model List<Models.EF.Menu>
 @{
+    var listParentProductCategory = (List<Models.EF.ProductCategory>)ViewBag.parentMenu;
     var listProductCategory = (List<Models.EF.ProductCategory>)ViewBag.subMenu;
 }
 <section class="navbar main-menu">
@@ -7,17 +8,16 @@
         <a href="/" class="logo pull-left"><img src="/assets/client/themes/images/logo.png" class="site_logo" alt=""></a>
         <nav id="menu" class="pull-right">
             <ul>
-                @foreach (var item in Model)
+                @foreach (var parentItem in listParentProductCategory)
                 {
                     <li>
-                        <a href="@item.Link" target="@item.Target">@item.Text</a>
+                        <a href="/san-pham/@parentItem.MetaTitle-@parentItem.ID">@parentItem.Name</a>
                         <ul>
-                            @foreach (var productCategory in listProductCategory)
+                            @foreach (var item in listProductCategory)
                             {
-
-                                if (Array.IndexOf(productCategory.MenuIDs.Split(','), item.ID.ToString()) > -1)
+                                if (parentItem.ID == item.ParentID)
                                 {
-                                    <li><a href="@(@item.Link + "/" +productCategory.MetaTitle)">@productCategory.Name</a></li>
+                                    <li><a href="/san-pham/@(item.MetaTitle + "-" + item.ID)">@item.Name</a></li>
                                 }
 
                             }
@@ -25,6 +25,8 @@
 
                     </li>
                 }
+                <li><a href="/san-pham/moi-nhat">Mới nhất</a></li>
+                <li><a href="/san-pham/ban-chay">Bán chạy</a></li>
             </ul>
         </nav>
     </div>

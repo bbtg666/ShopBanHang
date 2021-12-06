@@ -16,7 +16,19 @@ namespace Models.Dao
         }
         public List<ProductCategory> ListProductCategory()
         {
-            return context.ProductCategories.Where(x => x.Status == true).OrderBy(x=>x.DisplayOrder).ToList();
+            return context.ProductCategories.Where(x => x.Status == true && x.ParentID != null).OrderBy(x => x.DisplayOrder).ToList();
+        }
+        public List<ProductCategory> ListParentProductCategory()
+        {
+            return context.ProductCategories.Where(x => x.Status == true && x.ParentID == null).OrderBy(x => x.DisplayOrder).ToList();
+        }
+        public ProductCategory GetProductCategoryByID(long id)
+        {
+            return context.ProductCategories.Find(id);
+        }
+        public List<long> ListCategoryIDChild(long id)
+        {
+            return context.ProductCategories.Where(x => x.ParentID == id).Select(x => x.ID).ToList();
         }
     }
 }

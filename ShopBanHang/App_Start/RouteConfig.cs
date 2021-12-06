@@ -14,6 +14,13 @@ namespace ShopBanHang
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "Product Category",
+               url: "san-pham/{productCategory}-{id}",
+               defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional},
+               namespaces: new[] { "ShopBanHang.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Product Detail",
                 url: "chi-tiet/{metatitle}-{proId}",
                 defaults: new { controller = "Product", action = "ProductDetail",},

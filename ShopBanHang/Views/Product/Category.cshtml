@@ -1,0 +1,74 @@
+﻿@model List<Models.EF.Product>
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var productCategory = (Models.EF.ProductCategory)ViewBag.productCategory;
+
+}
+<section class="main-content">
+    <div class="row">
+        <div class="span9">
+            <ul class="thumbnails listing-products">
+                @foreach (var item in Model)
+                {
+                    <li class="span3">
+                        <div class="product-box">
+                            <a href="@("/chi-tiet/" + item.MetaTitle + "-" + item.ID)"><img alt="" src="@item.Image"></a><br />
+                            <a href="@("/chi-tiet/" + item.MetaTitle + "-" + item.ID)" class="title">@item.Name</a><br />
+                            @if (item.PromotionPrice != null)
+                            {
+                                <del class="price">@(item.Price.Value.ToString("N0") + "VND")</del>
+                                <p class="price">@(item.PromotionPrice.Value.ToString("N0") + "VND")</p>
+                            }
+                            @if (item.PromotionPrice == null)
+                            {
+                                <p class="price">@(item.Price.Value.ToString("N0") + "VND")</p>
+                            }
+                        </div>
+                    </li>
+                }
+
+            </ul>
+            <hr>
+            <div class="pagination pagination-small pagination-centered">
+                <ul>
+                    @if (ViewBag.totalPages > 0 && ViewBag.page <= ViewBag.totalPages)
+                    {
+                        var currentPage = (int)ViewBag.page;
+                        var pagesDisplay = (int)ViewBag.pagesDisplay;
+                        var totalPages = (int)ViewBag.totalPages;
+                        var link = "/san-pham/" + productCategory.MetaTitle + "-" + productCategory.ID;
+                        var startPageIndex = Math.Max(1, currentPage - pagesDisplay / 2);
+                        var endPageIndex = Math.Min(totalPages, currentPage + pagesDisplay / 2);
+
+                        if (ViewBag.page > ViewBag.First)
+                        {
+                            <li><a href="@link?page=@ViewBag.First" title="First" class="fas fa-angle-double-left"></a></li>
+                            <li><a href="@link?page=@ViewBag.Previous" title="Next" class="fas fa-angle-left"></a></li>
+                        }
+
+                        for (int i = startPageIndex; i <= endPageIndex; i++)
+                        {
+                            if (ViewBag.page == i)
+                            {
+                                <li><a href="@link?page=@i" class="active">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@link?page=@i">@i</a></li>
+                            }
+                        }
+
+                        if (ViewBag.page < ViewBag.Last)
+                        {
+                            <li><a href="@link?page=@ViewBag.Next" title="Previous" class="fas fa-angle-right"></a></li>
+                            <li><a href="@link?page=@ViewBag.Last" title="Last" class="fas fa-angle-double-right"></a></li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        @{Html.RenderAction("SlidebarRight", "Product");}
+    </div>
+</section>
+

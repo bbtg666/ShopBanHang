@@ -30,5 +30,15 @@ namespace Models.Dao
         {
             return context.Products.Find(id);
         }
+        public List<Product> GetListProductByCategoryIdPagination(long id, ref long totalRecords, int page, int pageSize)
+        {
+            totalRecords = context.Products.Where(x => x.Status == true &&  x.CategoryID == id).Count();
+            return context.Products.Where(x => x.Status == true && x.CategoryID == id).OrderBy(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        }
+        public List<Product> GetListProductByListChildCategoryIdPagination(long id, ref long totalRecords, int page, int pageSize, List<long> listID)
+        {
+            totalRecords = context.Products.Where(x => x.Status == true && listID.Contains(x.ID)).Count();
+            return context.Products.Where(x => x.Status == true && listID.Contains(x.ID)).OrderBy(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }
