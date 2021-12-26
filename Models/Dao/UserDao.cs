@@ -106,5 +106,13 @@ namespace Models.Dao
             }
             return modelUser.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
+        public bool CheckUserName(string userName)
+        {
+            return context.Users.Where(x => x.UserName == userName).FirstOrDefault() != null;  
+        }
+        public bool CheckEmail(string email)
+        {
+            return context.Users.Where(x => x.Email == email).FirstOrDefault() != null;
+        }
     }
 }

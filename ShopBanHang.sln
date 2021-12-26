@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopBanHang", "ShopBanHang\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{FE590244-4312-4E3B-AEA9-2E1AA2237652}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticResources", "StaticResources\StaticResources.csproj", "{D61E73E4-51F0-4470-936D-38B5ECB1BF48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE590244-4312-4E3B-AEA9-2E1AA2237652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61E73E4-51F0-4470-936D-38B5ECB1BF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61E73E4-51F0-4470-936D-38B5ECB1BF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61E73E4-51F0-4470-936D-38B5ECB1BF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61E73E4-51F0-4470-936D-38B5ECB1BF48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,134 @@
+﻿@model List<ShopBanHang.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal totalPrice = 0;
+}
+@section jsFooter{
+    <script src="/Scripts/CartController.js"></script>
+}
+<section class="main-content">
+    <div class="row">
+        <div class="span9">
+            <h4 class="title"><span class="text"><strong>GIỎ HÀNG</strong></span></h4>
+
+
+            @if (Model != null)
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Tổng cộng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td><input type="checkbox" class="checkbox" value="option1" data-id="@item.product.ID"></td>
+                                <td><a href="/chi-tiet/@item.product.MetaTitle-@item.product.ID"><img alt="" src="@item.product.Image"></a></td>
+                                <td>@item.product.Name</td>
+                                <td><input type="text" placeholder="@item.quantity" class="input-mini" data-id="@item.product.ID"></td>
+                                @if (item.product.PromotionPrice.HasValue)
+                                {
+                                    totalPrice += item.product.PromotionPrice.Value * item.quantity;
+                                    <td>@item.product.PromotionPrice.Value.ToString("N0") VND</td>
+                                    <td>@((item.product.PromotionPrice.Value * item.quantity).ToString("N0") + " VND")</td>
+                                }
+                                else
+                                {
+                                    totalPrice += item.product.Price.Value * item.quantity;
+                                    <td>@item.product.Price.Value.ToString("N0") VND</td>
+                                    <td>@((item.product.Price.Value * item.quantity).ToString("N0") + " VND")</td>
+                                }
+
+                            </tr>
+                        }
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><strong>@totalPrice.ToString("N0") VND</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>Bạn không có sản phẩm nào trong giỏ hàng</p>
+            }
+            <hr />
+            <p class="buttons center">
+                <button id="btnDelete" class="btn" type="button">Xóa</button>
+                <button id="btnContinue" class="btn" type="button">Tiếp tục mua</button>
+                <button class="btn btn-inverse" type="submit" id="checkout">Thanh toán</button>
+            </p>
+        </div>
+        <div class="span3 col">
+            <div class="block">
+                <ul class="nav nav-list">
+                    <li class="nav-header">SUB CATEGORIES</li>
+                    <li><a href="products.html">Nullam semper elementum</a></li>
+                    <li class="active"><a href="products.html">Phasellus ultricies</a></li>
+                    <li><a href="products.html">Donec laoreet dui</a></li>
+                    <li><a href="products.html">Nullam semper elementum</a></li>
+                    <li><a href="products.html">Phasellus ultricies</a></li>
+                    <li><a href="products.html">Donec laoreet dui</a></li>
+                </ul>
+                <br />
+                <ul class="nav nav-list below">
+                    <li class="nav-header">MANUFACTURES</li>
+                    <li><a href="products.html">Adidas</a></li>
+                    <li><a href="products.html">Nike</a></li>
+                    <li><a href="products.html">Dunlop</a></li>
+                    <li><a href="products.html">Yamaha</a></li>
+                </ul>
+            </div>
+            <div class="block">
+                <h4 class="title">
+                    <span class="pull-left"><span class="text">Randomize</span></span>
+                    <span class="pull-right">
+                        <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                    </span>
+                </h4>
+                <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <ul class="thumbnails listing-products">
+                                <li class="span3">
+                                    <div class="product-box">
+                                        <span class="sale_tag"></span>
+                                        <a href="product_detail.html"><img alt="" src="themes/images/ladies/2.jpg"></a><br />
+                                        <a href="product_detail.html" class="title">Fusce id molestie massa</a><br />
+                                        <a href="#" class="category">Suspendisse aliquet</a>
+                                        <p class="price">$261</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <ul class="thumbnails listing-products">
+                                <li class="span3">
+                                    <div class="product-box">
+                                        <a href="product_detail.html"><img alt="" src="themes/images/ladies/4.jpg"></a><br />
+                                        <a href="product_detail.html" class="title">Tempor sem sodales</a><br />
+                                        <a href="#" class="category">Urna nec lectus mollis</a>
+                                        <p class="price">$134</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

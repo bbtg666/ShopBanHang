@@ -8,5 +8,6 @@ namespace ShopBanHang.Common
     public static class Constants
     {
         public static string USER_SESSION = "USER_SESSION";
+        public static string CART_SESSION = "CART_SESSION";
     }
 }

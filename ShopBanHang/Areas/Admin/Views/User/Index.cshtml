@@ -6,6 +6,10 @@
 }
 @section jsFooter{
     <script src="~/assets/admin/js/UserController.js"></script>
+    <script type="text/javascript">
+        $('.page-item a').addClass("page-link");
+    </script>
+
 }
 <div class="row">
     @using (Html.BeginForm("Index", "User", FormMethod.Get, new { @class = "col-md-12" }))
@@ -67,8 +71,3 @@
         </div>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-    $('.page-item a').addClass("page-link");
-</script>

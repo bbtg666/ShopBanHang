@@ -51,7 +51,7 @@
                     }
                 </div>
                 <div class="span5">
-                    <form class="form-inline">
+                    <form class="form-inline" action="/them-gio-hang" method="get">
                         @*<label class="checkbox">
                                 <input type="checkbox" value=""> Option one is this and that
                             </label>
@@ -60,8 +60,9 @@
                                 <input type="checkbox" value=""> Be sure to include why it's great
                             </label>
                             <p>&nbsp;</p>*@
+                        <input type="hidden" hidden name="productId" value="@Model.ID"/>
                         <label>Số lượng:</label>
-                        <input type="text" class="span1" placeholder="1">
+                        <input type="text" class="span1" placeholder="1" name="quantity">
                         <button class="btn btn-inverse" type="submit">Thêm vào giỏ hàng</button>
                     </form>
                 </div>

@@ -1,11 +1,31 @@
 ﻿@model List<Models.EF.Menu>
+@using ShopBanHang.Common
 <div class="span8">
     <div class="account pull-right">
-        <ul class="user-menu">
-            @foreach (var item in Model)
-            {
-                <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
-            }
-        </ul>
+        @{ 
+            var userSession = (UserLogin)Session[Constants.USER_SESSION];
+        }
+        @if (userSession == null)
+        {
+            <ul class="user-menu">
+                @foreach (var item in Model)
+                {
+                    <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <ul class="user-menu">
+                @for (int i = 0; i < Model.Count - 2; i++)
+                {
+                    <li><a href="@Model[i].Link" target="@Model[i].Target">@Model[i].Text</a></li>
+                }
+                <li><a href="#">@userSession.UserName</a></li>
+                <li><a href="/user/logout">Thoát</a></li>
+            </ul>
+
+        }
+
     </div>
 </div>
